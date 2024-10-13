@@ -44,9 +44,8 @@ func CommandServe(cmd *cobra.Command, args []string) {
 	}
 
 	content, err := ReadOpenAPIFile(filePath)
-	fmt.Println(string(content))
 
 	http.Handle("/openapi/", http.StripPrefix("/openapi", swaggerui.Handler(content)))
-	log.Println("serving on :8080")
+	log.Println("Serving OpenAPI Specs on http://localhost:8080/openapi")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
